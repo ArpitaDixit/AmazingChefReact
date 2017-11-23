@@ -1,0 +1,189 @@
+body {
+    font: 14px "Century Gothic", Futura, sans-serif;
+    margin: auto;
+    background-color: #3E81B9;
+}
+
+.box {
+    border-radius: 4px;
+    width: 1080px;
+    min-height: 10px;
+    margin: 10px auto 10px;
+    padding: 10px;
+}
+
+.box-hightlight {
+    border: 2px solid #2699FB;
+}
+
+.main-background {
+    background-color: #3E81B9;
+}
+
+.white-trans-background {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.white-box {
+    border-radius: 4px;
+    /*margin: auto;*/
+    padding: 10px;
+    margin: 10px;
+}
+
+.nopadding {
+    padding: 0px;
+}
+
+.white-box-hightlight {
+    border: 1px solid #FFFFFF;
+}
+
+.no-border {
+    border-width: 0px;
+}
+
+.shadow {
+    box-shadow: 10px 10px 15px black;
+}
+
+.inline {
+    display: inline-block;
+}
+
+#header {
+    display: flex;
+}
+
+.logo {
+    margin: auto;
+    width: 20%;
+}
+
+.tablist {
+    list-style-type: none;
+}
+
+.tabheader {
+}
+
+.tabitem {
+    color: #FD9700;
+    font-size: 20px;
+    margin: auto;
+    display: inline-block;
+    padding: 0px 20px;
+    cursor: pointer;
+}
+
+.tabitem a:hover {
+    color: #FACF8E;
+}
+
+.tabitem-selected {
+    color: white;
+    font-size: 20px;
+    margin: auto;
+    /*border-bottom: 3px solid white;*/
+}
+
+.tabitem-selected::after {
+    background: url("../image/hightlight bar.png");
+}
+
+.tabitem-selected a:hover {
+    color: white;
+}
+
+.button {
+    border-radius: 4px;
+    padding: 3px 10px;
+    max-width: 60px;
+    margin: auto;
+}
+
+.ingr-container {
+    width: 50%;
+    height: 100px;
+    float: left;
+}
+
+.ingr-search-container {
+    width: 50%;
+    overflow: hidden;
+}
+
+.ingr-search-input {
+    color: white;
+    width: 92%;
+    margin-bottom: 5px;
+}
+
+.ingr-search-input:focus {
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid #FFFFFF;
+}
+
+.ingr-suggestion-container-open {
+    margin-top: 5px;
+    max-height: 100px;
+    overflow-y: auto;
+    z-index: 10;
+}
+
+.ingr-suggestion {
+    color: #FFFFFF;
+    font-size: 14px;
+    margin: 0px;
+    padding: 2px 5px;
+    cursor: pointer;
+}
+
+.ingr-suggestion-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ingr-suggestion-highlight {
+    background-color: #FD9700;
+    border-radius: 4px;
+}
+
+.ingr-container{
+    display: flex;
+    height: 160px;
+    overflow-y: auto;
+}
+
+.ingr-container ul{
+    margin: 0;
+    padding: 0;
+}
+
+.ingr-container li{
+    list-style-type: none;
+    padding:0;
+    margin: 0;
+    display: inline-block;
+}
+
+.ingr-button{
+
+    min-width: 10px;
+    margin: 5px;
+    background-color: #FACF8E;
+    border: 1px solid #FACF8E;
+    border-radius: 4px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.ingr-button-selected{
+    min-width: 10px;
+    background-color: #FFA013;
+}
+
+.recipes-container{
+    margin: 30px 15px;
+}
