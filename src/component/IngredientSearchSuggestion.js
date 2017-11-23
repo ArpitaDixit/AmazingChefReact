@@ -1,13 +1,31 @@
 import React from "react";
 import AutoSuggest from "react-autosuggest";
+import BaseContainer from "../BaseContainer"
+import {sendRequest} from "../service/BaseServices"
 
-export class IngredientSearchSuggestion extends React.Component {
+export class IngredientSearchSuggestion extends BaseContainer {
     constructor(props) {
         super(props);
         this.state = {
             suggestion: this.props.suggestion || [],
             value: '',
             ingredients: ['egg', 'eggs', 'egg white', 'egg york', 'egg shell', 'egg substitute', 'potato', 'tomato'],
+        }
+    }
+
+    componentDidMount() {
+        sendRequest('GET', '/ingredients', null, null, this, 'ingr');
+    }
+
+    onSuccess(res, tag) {
+        if (tag === 'ingr') {
+            let ingr = [];
+            for (let cat in res) {
+                let names = res[cat].map(item => item.name);
+                ingr = ingr.concat(names);
+            }
+            if (ingr)
+                this.setState({ingredients: ingr});
         }
     }
 
@@ -20,7 +38,7 @@ export class IngredientSearchSuggestion extends React.Component {
     _getSuggestions = value => {
         let inputVal = value.trim().toLocaleLowerCase();
         let inputLen = inputVal.length;
-        return inputLen === 0 ? [] : this.state.ingredients.filter(ingr =>
+        return inputLen < 1 ? [] : this.state.ingredients.filter(ingr =>
             ingr.toLowerCase().indexOf(inputVal) >= 0
         );
     };
@@ -68,6 +86,17 @@ export class IngredientSearchSuggestion extends React.Component {
      */
     _getSuggestionValue = suggestion => suggestion;
 
+    /**
+     * helper function to clear input value and execute props onSuggestionSelected
+     * @param event
+     * @param suggestionValue
+     * @private
+     */
+    _onSuggestionSelected(event, {suggestionValue}) {
+        this.setState({value: ''});
+        this.props.onSuggestionSelected(event, {suggestionValue});
+    }
+
     render() {
         const inputProps = {
             placeholder: 'search for ingredient and select from the box',
@@ -82,7 +111,8 @@ export class IngredientSearchSuggestion extends React.Component {
                 getSuggestionValue={this._getSuggestionValue}
                 inputProps={inputProps}
                 renderSuggestion={this._renderSuggestion}
-                onSuggestionSelected={this.props.onSuggestionSelected}
+                onSuggestionSelected={this._onSuggestionSelected.bind(this)}
+                highlightFirstSuggestion={true}
                 theme={{
                     input: 'white-box no-border white-trans-background shadow ingr-search-input',
                     container: 'ingr-search-container',

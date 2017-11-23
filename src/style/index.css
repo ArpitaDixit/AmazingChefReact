@@ -98,24 +98,33 @@ body {
 .button {
     border-radius: 4px;
     padding: 3px 10px;
-    max-width: 60px;
+    /*max-width: 60px;*/
     margin: auto;
 }
 
 .ingr-container {
-    width: 50%;
-    height: 100px;
+    display: flex;
+    width: 60%;
+    height: 160px;
     float: left;
+    overflow-y: auto;
+}
+
+.ingr-container ul{
+    margin: 0;
+    padding: 0;
 }
 
 .ingr-search-container {
-    width: 50%;
+    width: 40%;
     overflow: hidden;
+    padding-right: 10px;
+    /*height: 100px;*/
 }
 
 .ingr-search-input {
     color: white;
-    width: 92%;
+    width: 90%;
     margin-bottom: 5px;
 }
 
@@ -148,17 +157,6 @@ body {
 .ingr-suggestion-highlight {
     background-color: #FD9700;
     border-radius: 4px;
-}
-
-.ingr-container{
-    display: flex;
-    height: 160px;
-    overflow-y: auto;
-}
-
-.ingr-container ul{
-    margin: 0;
-    padding: 0;
 }
 
 .ingr-container li{

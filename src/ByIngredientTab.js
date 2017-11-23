@@ -4,13 +4,17 @@ import {IngreButton} from "./component/IngreButton";
 import {IngredientSearchSuggestion} from "./component/IngredientSearchSuggestion";
 import {FlatList} from "./component/FlatList";
 import {RecipeContainer} from "./RecipeContainer";
+import {Button} from "./component/Button";
+import {sendRequest} from "./service/BaseServices";
+import BaseContainer from "./BaseContainer";
 
-export class ByIngredientTab extends React.Component {
+export class ByIngredientTab extends BaseContainer {
     constructor(props) {
         super(props);
         this.state = {
             ingrSelected: [],
             ingrSelectedSet: [],
+            recipes: [],
         }
     }
 
@@ -46,11 +50,31 @@ export class ByIngredientTab extends React.Component {
         )
     };
 
+    _search = () => {
+        let ingr = this.state.ingrSelected;
+        ingr = ingr.reduce(
+            (filt, item) => {
+                if (item.selected) filt.push(item.name);
+                return filt;
+            }, []);
+        if (ingr.length) {
+            let url = `/search?ingredients=${JSON.stringify(ingr)}`;
+            sendRequest('get', url, null, null, this, 'search');
+        }
+    };
+
+    onSuccess(res, tag) {
+        if (tag === 'search') {
+            this.setState({recipes: res});
+        }
+    }
 
     render() {
         return (
             <StyledBox>
                 <div style={{display: 'flex'}}>
+                    <IngredientSearchSuggestion
+                        onSuggestionSelected={this._onSuggestionSelected}/>
                     <WhiteBox id={'ingr-container'} className={'ingr-container'}>
                         <FlatList
                             data={this.state.ingrSelected}
@@ -58,11 +82,11 @@ export class ByIngredientTab extends React.Component {
                             renderItem={this._renderButton}/>
                     </WhiteBox>
 
-                    <IngredientSearchSuggestion
-                        onSuggestionSelected={this._onSuggestionSelected}/>
+                    <Button onClick={this._search}> SEARCH </Button>
                 </div>
 
-                <RecipeContainer/>
+                <RecipeContainer
+                    recipes={this.state.recipes}/>
             </StyledBox>
         )
     }
