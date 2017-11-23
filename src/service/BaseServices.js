@@ -24,7 +24,6 @@ export function buildRequestURL(path) {
  */
 export function sendRequest(method, path, request, response
     , context, tag = DEFAULT_TAG) {
-    console.log('================Enter SendRequest');
     sendRequestWithHeader(null, method, path, request, response, context, tag);
 }
 
@@ -57,7 +56,6 @@ export function sendRequestWithHeader(header, method, path, request, response
         req['body'] = JSON.stringify(request);
     }
 
-    console.log(buildRequestURL(path));
     return fetch(buildRequestURL(path), req)
         .then((res) => {
             if (res.status !== undefined && res.status >= 200 && res.status < 400) {
@@ -76,8 +74,6 @@ export function sendRequestWithHeader(header, method, path, request, response
             context.onSuccess(jsonData, tag);
         })
         .catch((err) => {
-            console.log('==============Error happening');
-            console.log(err);
             LOG(context, "An error has happened " + err);
             context.onError(err, tag);
         });
