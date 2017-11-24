@@ -13,15 +13,15 @@ export class ByIngredientTab extends BaseContainer {
         super(props);
         this.state = {
             ingrSelected: [],
-            ingrSelectedSet: [],
+            ingrSelectedSet: new Set([]),
             recipes: [],
         }
     }
 
     _onSuggestionSelected = (event, {suggestionValue}) => {
         let ingrSet = this.state.ingrSelectedSet;
-        if (ingrSet.indexOf(suggestionValue) < 0) {
-            ingrSet.push(suggestionValue);
+        if (!ingrSet.has(suggestionValue)) {
+            ingrSet.add(suggestionValue);
             let ingr = this.state.ingrSelected;
             let n = {name: suggestionValue, selected: true};
             ingr.push(n);
@@ -49,6 +49,24 @@ export class ByIngredientTab extends BaseContainer {
             />
         )
     };
+
+    _clearIngrBox() {
+        if (this.state.ingrSelected.length === 0)
+            return;
+
+        let ingr = this.state.ingrSelected;
+        let selected = ingr.filter(item => item.selected);
+        if (selected.length !== ingr.length) {
+            let set = this.state.ingrSelectedSet;
+            let clear = ingr.filter(item => !item.selected);
+            clear.forEach(item => set.delete(item.name));
+            this.setState({ingrSelected: selected, ingrSelectedSet: set});
+        } else {
+            this.setState({ingrSelected: [], ingrSelectedSet: new Set([])});
+
+        }
+
+    }
 
     _search = () => {
         let ingr = this.state.ingrSelected;
@@ -81,8 +99,10 @@ export class ByIngredientTab extends BaseContainer {
                             keyExtractor={item => item.name}
                             renderItem={this._renderButton}/>
                     </WhiteBox>
-
-                    <Button onClick={this._search}> SEARCH </Button>
+                    <div>
+                        <Button onClick={this._clearIngrBox.bind(this)}> CLEAR </Button>
+                        <Button onClick={this._search}> SEARCH </Button>
+                    </div>
                 </div>
 
                 <RecipeContainer

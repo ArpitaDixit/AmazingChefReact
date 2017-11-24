@@ -1,5 +1,4 @@
 import React from "react";
-import {RecipeViewModal} from "../RecipeViewModal";
 
 export class RecipeThumnail extends React.Component {
     constructor(props) {
@@ -11,18 +10,19 @@ export class RecipeThumnail extends React.Component {
 
 
     render() {
+        let recipe = this.state.recipe;
         return (
-            <div onClick={() => this.props.onClick(this.state.recipe)} className={'recipe-thumb'}>
-                <div className={'recipe-thumb-header'}>{this.state.recipe.recipe_name}</div>
+            <div onClick={() => this.props.onClick(recipe)} className={'recipe-thumb shadow'}>
+                <div className={'recipe-thumb-header'}>{recipe.recipe_name.replace('_', ' ')}</div>
                 <div className={'recipe-thumb-body'}>
-                    <img src={this.state.recipe.image.source} alt={''}/>
+                    <img src={recipe.image.source} alt={''}/>
                     <div className={'overlay'}>
-                        <div className={'overlay-text'}>
-                            {`Cooktime: ${this.state.recipe.cook_time} minutes`} <br/>
-                            {`Cuisine: ${this.state.recipe.cruisine_type.join(', ')}`} <br/>
-                            {`Meal: ${this.state.recipe.meal_type.join(', ')}`}<br/>
-                            {`Dietary: ${this.state.recipe.dietary.join(', ')}`}
-                        </div>
+                        <span>
+                            {`Cooktime: ${recipe.cook_time} minutes`} <br/>
+                            {`Cuisine: ${recipe.cruisine_type.join(', ')}`} <br/>
+                            {`Meal: ${recipe.meal_type.join(', ')}`}<br/>
+                            {`Dietary: ${recipe.dietary.join(', ')}`}
+                        </span>
                     </div>
                 </div>
 

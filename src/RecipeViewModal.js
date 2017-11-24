@@ -10,7 +10,8 @@ export class RecipeViewModal extends React.Component {
                 isOpen={this.props.isOpen}
                 onRequestClose={this.props.onRequestClose}
                 contentLabel={'RecipeView'}
-                className={'box box-hightlight main-background'}>
+                className={'box box-hightlight main-background recipe-view-modal'}
+                overlayClassName={'common-modal-overlay'}>
 
                 <RecipeView
                 recipe={this.props.recipe}/>

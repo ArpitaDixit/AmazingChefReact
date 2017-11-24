@@ -44,15 +44,15 @@ body {
 }
 
 .shadow {
-    box-shadow: 10px 10px 15px black;
+    box-shadow: 5px 5px 10px black;
 }
 
-.inline {
-    display: inline-block;
-}
-
-#header {
+.display-flex{
     display: flex;
+}
+
+.headroom {
+    zIndex: 1;
 }
 
 .logo {
@@ -167,7 +167,6 @@ body {
 }
 
 .ingr-button{
-
     min-width: 10px;
     margin: 5px;
     background-color: #FACF8E;
@@ -180,4 +179,19 @@ body {
 .ingr-button-selected{
     min-width: 10px;
     background-color: #FFA013;
+}
+
+.slider{
+    transition-property: all;
+    transition-duration: .5s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
+.slider-close{
+    max-height: 0;
+}
+
+.login-modal{
+    height: 95%;
+    overflow-y: auto;
 }

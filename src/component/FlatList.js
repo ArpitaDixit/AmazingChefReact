@@ -9,8 +9,8 @@ import React from "react";
  * @props renderItem: function take in two parameters item and index to render each element
  */
 export class FlatList extends React.Component {
-    _keyExtractor = (item) => {
-        return item.key || '';
+    _keyExtractor = (item, index) => {
+        return index;
     };
 
     _renderData() {
@@ -18,7 +18,7 @@ export class FlatList extends React.Component {
         let keyExtractor = this.props.keyExtractor || this._keyExtractor;
         let listItems = data.map((item, index) => {
             return (
-                <li key={keyExtractor(item)}>
+                <li key={keyExtractor(item, index)}>
                     {this.props.renderItem(item, index)}
                 </li>
             )

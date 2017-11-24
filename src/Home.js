@@ -10,6 +10,7 @@ import {SubmitRecipeTab} from "./SubmitRecipeTab";
 import {ContactUsTab} from "./ContactUsTab";
 import {FooterSection} from "./FooterSection";
 import {LoginModal} from "./LoginModal";
+import Headroom from "react-headroom";
 
 
 export class AmzingChef extends Component {
@@ -21,26 +22,27 @@ export class AmzingChef extends Component {
         }
     }
 
-    _renderLogin(){
+    _renderLogin() {
         return <LoginModal isOpen={this.state.login}
                            onRequestClose={() => this.setState({login: false})}/>
     }
 
     render() {
         return (
-
             <div className={'container main-background'}>
-                <Tabs id={'????'} onSelect={this._toggleTabClass} selectedTabClassName={'tabitem-selected'}>
-                    <StyledBox id={'header'}>
-                        <div className={'logo'}><img src={require('./image/Amazing Chef.png')} alt={'error'}/></div>
-                        <TabList className={'tablist'}>
-                            <Tab className={'tabitem'}> <a>By Ingredient</a> </Tab>
-                            <Tab className={'tabitem'}> <a>By Name</a> </Tab>
-                            <Tab className={'tabitem'}> <a>Submit Recipe</a> </Tab>
-                            <Tab className={'tabitem'}> <a>Contact Us</a> </Tab>
-                        </TabList>
-                        <Button onClick={() => this.setState({login: true})}>Login</Button>
-                    </StyledBox>
+                <Tabs selectedTabClassName={'tabitem-selected'}>
+                    <Headroom>
+                        <StyledBox className={'display-flex'}>
+                            <div className={'logo'}><img src={require('./image/Amazing Chef.png')} alt={'error'}/></div>
+                            <TabList className={'tablist'}>
+                                <Tab className={'tabitem'}> <a>By Ingredient</a> </Tab>
+                                <Tab className={'tabitem'}> <a>By Name</a> </Tab>
+                                <Tab className={'tabitem'}> <a>Submit Recipe</a> </Tab>
+                                <Tab className={'tabitem'}> <a>Contact Us</a> </Tab>
+                            </TabList>
+                            <Button onClick={() => this.setState({login: true})}>Login</Button>
+                        </StyledBox>
+                    </Headroom>
 
                     <TabPanel>
                         <ByIngredientTab/>
