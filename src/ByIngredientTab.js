@@ -15,6 +15,8 @@ export class ByIngredientTab extends BaseContainer {
             ingrSelected: [],
             ingrSelectedSet: new Set([]),
             recipes: [],
+            skip: 0,
+            limit: 1,
         }
     }
 
@@ -68,22 +70,40 @@ export class ByIngredientTab extends BaseContainer {
 
     }
 
-    _search = () => {
+    _getSelectedIngr(){
         let ingr = this.state.ingrSelected;
         ingr = ingr.reduce(
             (filt, item) => {
                 if (item.selected) filt.push(item.name);
                 return filt;
             }, []);
+        return ingr;
+    }
+
+    _search = (tag) => {
+        let ingr = this._getSelectedIngr();
+        let skip = this.state.skip;
+        let limit = this.state.limit;
+        if (tag === 'load more')
+            skip += limit;
         if (ingr.length) {
-            let url = `/search?ingredients=${JSON.stringify(ingr)}`;
-            sendRequest('get', url, null, null, this, 'search');
+            let url = `/search?ingredients=${JSON.stringify(ingr)}&skip=${skip}&limit=${limit}`;
+            sendRequest('get', url, null, null, this, tag);
         }
     };
 
+
     onSuccess(res, tag) {
-        if (tag === 'search') {
-            this.setState({recipes: res});
+        if (tag === 'new search') {
+            this.setState({
+                recipes: res,
+                skip: 0
+            });
+        } if (tag === 'load more'){
+            this.setState({
+                recipes: this.state.recipes.concat(res),
+                skip: this.state.skip + this.state.limit,
+            });
         }
     }
 
@@ -101,12 +121,13 @@ export class ByIngredientTab extends BaseContainer {
                     </WhiteBox>
                     <div>
                         <Button onClick={this._clearIngrBox.bind(this)}> CLEAR </Button>
-                        <Button onClick={this._search}> SEARCH </Button>
+                        <Button onClick={() =>  this._search('new search')}> SEARCH </Button>
                     </div>
                 </div>
 
                 <RecipeContainer
                     recipes={this.state.recipes}/>
+                <Button onClick={() => this._search('load more')}>Load More</Button>
             </StyledBox>
         )
     }

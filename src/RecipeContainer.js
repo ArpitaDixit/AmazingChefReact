@@ -354,8 +354,9 @@ export class RecipeContainer extends React.Component {
 
     render() {
         let recipes = this.state.bogus;
-        if (this.state.recipes && this.state.recipes.length > 0)
-            recipes = this.state.recipes;
+        if (this.props.recipes && this.props.recipes.length > 0)
+            recipes = this.props.recipes;
+
         return (
             <div className={'recipes-container'}>
                 <h1>RECIPES</h1>
@@ -367,12 +368,6 @@ export class RecipeContainer extends React.Component {
                     isOpen={this.state.showModal}
                     onRequestClose={() => this.setState({showModal: false})}
                     recipe={this.state.modalRecipe}/>
-
-                <Button onClick={() => {
-                    let bogus = this.state.bogus;
-                    bogus = bogus.concat(this.state.bbb);
-                    this.setState({bogus: bogus});
-                }}>Load More</Button>
             </div>
         )
     }

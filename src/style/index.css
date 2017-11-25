@@ -192,6 +192,6 @@ body {
 }
 
 .login-modal{
-    height: 95%;
+    max-height: 93%;
     overflow-y: auto;
 }
