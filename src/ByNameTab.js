@@ -46,14 +46,11 @@ export class ByNameTab extends BaseContainer {
 
     onSuccess(res, tag) {
         if (tag === 'search') {
-            console.log("inside on succcess");
             this.setState({recipes: res});
         }
     }
 
     render(){
-
-
         return (
             <StyledBox>
                 <div style={{display: 'flex'}}>
@@ -71,5 +68,4 @@ export class ByNameTab extends BaseContainer {
             </StyledBox>
         )
     }
-
 }

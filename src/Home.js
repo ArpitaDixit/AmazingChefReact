@@ -11,7 +11,7 @@ import {ContactUsTab} from "./ContactUsTab";
 import {FooterSection} from "./FooterSection";
 import {LoginModal} from "./LoginModal";
 import Headroom from "react-headroom";
-
+//<!--Button onClick={() => this.setState({login: true})}>Login</Button-->
 
 export class AmzingChef extends Component {
 
@@ -22,11 +22,12 @@ export class AmzingChef extends Component {
         }
     }
 
+    /*
     _renderLogin() {
         return <LoginModal isOpen={this.state.login}
                            onRequestClose={() => this.setState({login: false})}/>
     }
-
+    */
     render() {
         return (
             <div className={'container main-background'}>
@@ -39,8 +40,8 @@ export class AmzingChef extends Component {
                                 <Tab className={'tabitem'}> <a>By Name</a> </Tab>
                                 <Tab className={'tabitem'}> <a>Submit Recipe</a> </Tab>
                                 <Tab className={'tabitem'}> <a>Contact Us</a> </Tab>
+                                <Tab className={'tabitem'}> <a>Login</a> </Tab>
                             </TabList>
-                            <Button onClick={() => this.setState({login: true})}>Login</Button>
                         </StyledBox>
                     </Headroom>
 
@@ -56,10 +57,14 @@ export class AmzingChef extends Component {
                     <TabPanel>
                         <ContactUsTab/>
                     </TabPanel>
+                    <TabPanel>
+                        <LoginModal/>
+                    </TabPanel>
+
                 </Tabs>
                 <FooterSection/>
 
-                {this._renderLogin()}
+                {/*this._renderLogin()*/}
             </div>
         )
     }
