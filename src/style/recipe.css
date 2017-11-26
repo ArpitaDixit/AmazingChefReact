@@ -34,16 +34,16 @@
     height: 100%;
 }
 
-.recipe-thumb-header {
-     width: 100%;
-     height: 20%;
-     margin: auto;
-     background-color: #FFFFFF;
-     text-align: center;
-     vertical-align: middle;
-     line-height: 50px;
-     text-transform: capitalize;
- }
+.recipe-thumb h1 {
+    width: 100%;
+    height: 20%;
+    margin: auto;
+    background-color: #FFFFFF;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 50px;
+    text-transform: capitalize;
+}
 
 .recipe-thumb-body {
     position: relative;
@@ -90,40 +90,32 @@
 
 .recipe-view-modal {
     height: 93%;
-    /*overflow: hidden;*/
-    /*overflow-y: auto;*/
 }
 
 .scrollbar{
     overflow-y: auto;
-    /*padding: 30px;*/
 }
 
-.scrollbar:hover{
-    overflow-y: auto;
+.scrollbar::-webkit-scrollbar{
+    width: 6px;
 }
 
 .scrollbar::-webkit-scrollbar-track{
-    -webkit-box-shadow: inset 0 0 0 rgba(0,0,0,0.3);
-    border-radius: 10px;
-    background-color: #3E81B9;
+    border-radius: 3px;
+    background-color: rgba(255, 255, 255, 0);
 }
 
-.scrollbar::-webkit-scrollbar
-{
-    width: 10px;
-    /*background-color: #2699FB;*/
+.scrollbar::-webkit-scrollbar-thumb{
+    border-radius: 3px;
+    background-color: rgba(255, 255, 255, 0);
 }
 
-.scrollbar::-webkit-scrollbar-thumb
-{
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 0 rgba(0,0,0,.3);
+.scrollbar:hover::-webkit-scrollbar-track{
+    background-color: #306C9E;
+}
+
+.scrollbar:hover::-webkit-scrollbar-thumb{
     background-color: #2699FB;
-}
-
-.scrollbar::-webkit-scrollbar-thumb:window-inactive {
-    background: rgba(255,0,0,0.4);
 }
 
 .common-modal-overlay {
@@ -137,14 +129,24 @@
 }
 
 .recipe-view{
-    margin: 100px;
+    margin: 50px;
 }
 
 .recipe-view img{
     width: 300px;
     height: 200px;
 }
-.recipe-view h1{
+
+.recipe-view h1 {
+    text-transform: capitalize;
+    font-size: 70pt;
+    text-align: center;
+    font-family: Forte;
+    color: white;
+    margin: auto;
+}
+
+.recipe-view h2{
     font-family: Script MT;
     font-size: 40px;
     color: white;
@@ -157,15 +159,10 @@
     font-size: 20px;
 }
 
-.recipe-view-name {
-    text-transform: capitalize;
-    font-size: 70pt;
-    text-align: center;
-    font-family: Forte;
-    color: white;
-    margin: auto;
+.prev-next-icons{
+    color: rgba(255,255,255,0.3);
 }
 
-.recipe-view h2{
-    text-align: center;
+.prev-next-icons:hover{
+    color: rgba(255,255,255,1.0);
 }

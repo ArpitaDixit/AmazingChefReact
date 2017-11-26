@@ -1,19 +1,16 @@
+/**
+ * Created by khoale on 11/25/2017.
+ */
 import React from "react";
 
 export class RecipeThumnail extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            recipe: this.props.recipe,
-        }
-    }
-
-
     render() {
-        let recipe = this.state.recipe;
+        let recipe = this.props.recipe;
+        let index = this.props.index;
         return (
-            <div onClick={() => this.props.onClick(recipe)} className={'recipe-thumb shadow'}>
-                <div className={'recipe-thumb-header'}>{recipe.recipe_name.replace('_', ' ')}</div>
+            <div onClick={() => this.props.onClick({recipe: recipe, index: index})}
+                 className={'recipe-thumb shadow'}>
+                <h1>{recipe.recipe_name.replace('_', ' ')}</h1>
                 <div className={'recipe-thumb-body'}>
                     <img src={recipe.image.source} alt={''}/>
                     <div className={'overlay'}>

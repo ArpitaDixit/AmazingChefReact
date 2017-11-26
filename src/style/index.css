@@ -64,8 +64,6 @@ body {
     list-style-type: none;
 }
 
-.tabheader {
-}
 
 .tabitem {
     color: #FD9700;
@@ -169,8 +167,9 @@ body {
 .ingr-button {
     min-width: 10px;
     margin: 5px;
-    background-color: #FACF8E;
-    border: 1px solid #FACF8E;
+    background-color: #F2B8B8;
+
+    border: 1px solid #F2B8B8;
     border-radius: 4px;
     padding: 5px;
     cursor: pointer;

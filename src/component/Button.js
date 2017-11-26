@@ -1,3 +1,6 @@
+/**
+ * Created by khoale on 11/25/2017.
+ */
 import React, {Component} from "react";
 
 export class Button extends Component {

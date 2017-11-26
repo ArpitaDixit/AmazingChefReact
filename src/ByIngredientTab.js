@@ -17,11 +17,12 @@ export class ByIngredientTab extends BaseContainer {
     constructor(props) {
         super(props);
         this.state = {
-            ingrSelected: [],
-            ingrSelectedSet: new Set(),
+            ingrSelected: [{name: 'salt', selected: true}],
+            ingrSelectedSet: new Set(['salt']),
             recipes: [],
             skip: 0,
             limit: 1,
+            showLoadMoreButton: false,
         }
     }
 
@@ -71,55 +72,60 @@ export class ByIngredientTab extends BaseContainer {
     _clearIngrBox() {
         if (this.state.ingrSelected.length === 0)
             return;
-
-        let ingr = this.state.ingrSelected;
-        let selected = ingr.filter(item => item.selected);
-        if (selected.length !== ingr.length) {
-            let set = this.state.ingrSelectedSet;
-            let clear = ingr.filter(item => !item.selected);
-            clear.forEach(item => set.delete(item.name));
-            this.setState({ingrSelected: selected, ingrSelectedSet: set});
-        } else {
-            this.setState({ingrSelected: [], ingrSelectedSet: new Set([])});
-
-        }
-
+        this.setState({ingrSelected: [], ingrSelectedSet: new Set([])});
     }
 
     _getSelectedIngr() {
         let ingr = this.state.ingrSelected;
-        ingr = ingr.reduce(
+        let included = ingr.reduce(
             (filt, item) => {
                 if (item.selected) filt.push(item.name);
                 return filt;
             }, []);
-        return ingr;
+        let excluded = ingr.reduce(
+            (filt, item) => {
+                if (!item.selected) filt.push(item.name);
+                return filt;
+            }, []);
+        return {included: included, excluded: excluded};
     }
 
     _search = (tag) => {
         let ingr = this._getSelectedIngr();
-        let skip = this.state.skip;
+        let skip = 0;
         let limit = this.state.limit;
         if (tag === 'load more')
-            skip += limit;
-        if (ingr.length) {
-            let url = `/search?ingredients=${JSON.stringify(ingr)}&skip=${skip}&limit=${limit}`;
+            skip += this.state.skip + limit;
+
+        if (ingr.included.length) {
+            let url = `/search?ingredients=${JSON.stringify(ingr.included)}`;
+            url += `&excluded=${JSON.stringify(ingr.excluded)}`;
+            url += `&skip=${skip}`;
+            url += `&limit=${limit}`;
             sendRequest('get', url, null, null, this, tag);
         }
     };
 
+    _renderLoadMoreButton(){
+        if (this.state.showLoadMoreButton){
+            return <Button onClick={() => this._search('load more')}>Load More</Button>
+        }
+    }
 
     onSuccess(res, tag) {
+        let showLoadMoreButton = res.length === this.state.limit;
         if (tag === 'new search') {
             this.setState({
                 recipes: res,
-                skip: 0
+                skip: 0,
+                showLoadMoreButton: showLoadMoreButton,
             });
         }
         if (tag === 'load more') {
             this.setState({
                 recipes: this.state.recipes.concat(res),
                 skip: this.state.skip + this.state.limit,
+                showLoadMoreButton: showLoadMoreButton,
             });
         }
     }
@@ -144,7 +150,8 @@ export class ByIngredientTab extends BaseContainer {
 
                 <RecipeContainer
                     recipes={this.state.recipes}/>
-                <Button onClick={() => this._search('load more')}>Load More</Button>
+
+                {this._renderLoadMoreButton()}
             </StyledBox>
 
         )

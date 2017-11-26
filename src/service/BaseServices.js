@@ -1,3 +1,6 @@
+/**
+ * Created by khoale on 11/25/2017.
+ */
 import {LOG} from "../utils/Heplers";
 
 //TODO: switch back to aws address in production
