@@ -1,3 +1,6 @@
+/**
+ * Created by khoale on 11/25/2017.
+ */
 import React from "react";
 import {StyledBox, WhiteBox} from "./component/CommonBox";
 import {IngreButton} from "./component/IngreButton";
@@ -7,13 +10,15 @@ import {RecipeContainer} from "./RecipeContainer";
 import {Button} from "./component/Button";
 import {sendRequest} from "./service/BaseServices";
 import BaseContainer from "./BaseContainer";
+import Scrollbar from 'react-smooth-scrollbar';
+
 
 export class ByIngredientTab extends BaseContainer {
     constructor(props) {
         super(props);
         this.state = {
             ingrSelected: [],
-            ingrSelectedSet: new Set([]),
+            ingrSelectedSet: new Set(),
             recipes: [],
             skip: 0,
             limit: 1,
@@ -39,15 +44,26 @@ export class ByIngredientTab extends BaseContainer {
         ingr[index].selected = !ingr[index].selected;
         this.setState({ingrSelected: ingr});
     };
+    _ingrButRemove = ({index}) => {
+        let ingr = this.state.ingrSelected;
+        let name = ingr[index].name;
+        let ingrSet = this.state.ingrSelectedSet;
+        ingr.splice(index, 1);
+
+        ingrSet.delete(name);
+        this.setState({ingrSelected: ingr, ingrSelectedSet: ingrSet});
+    };
 
     _renderButton = (item, index) => {
         let onClick = this._ingrButClick.bind(this);
+        let onClose = this._ingrButRemove.bind(this);
         return (
             <IngreButton
                 index={index}
                 title={item.name}
                 selected={item.selected}
                 onClick={onClick}
+                onClose={onClose}
             />
         )
     };
@@ -70,7 +86,7 @@ export class ByIngredientTab extends BaseContainer {
 
     }
 
-    _getSelectedIngr(){
+    _getSelectedIngr() {
         let ingr = this.state.ingrSelected;
         ingr = ingr.reduce(
             (filt, item) => {
@@ -99,7 +115,8 @@ export class ByIngredientTab extends BaseContainer {
                 recipes: res,
                 skip: 0
             });
-        } if (tag === 'load more'){
+        }
+        if (tag === 'load more') {
             this.setState({
                 recipes: this.state.recipes.concat(res),
                 skip: this.state.skip + this.state.limit,
@@ -121,7 +138,7 @@ export class ByIngredientTab extends BaseContainer {
                     </WhiteBox>
                     <div>
                         <Button onClick={this._clearIngrBox.bind(this)}> CLEAR </Button>
-                        <Button onClick={() =>  this._search('new search')}> SEARCH </Button>
+                        <Button onClick={() => this._search('new search')}> SEARCH </Button>
                     </div>
                 </div>
 
@@ -129,6 +146,7 @@ export class ByIngredientTab extends BaseContainer {
                     recipes={this.state.recipes}/>
                 <Button onClick={() => this._search('load more')}>Load More</Button>
             </StyledBox>
+
         )
     }
 }

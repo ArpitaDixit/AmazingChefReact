@@ -1,3 +1,6 @@
+/**
+ * Created by khoale on 11/25/2017.
+ */
 import React from "react";
 import AutoSuggest from "react-autosuggest";
 import BaseContainer from "../BaseContainer"
