@@ -7,6 +7,10 @@ import {FlatList} from "./component/FlatList";
 import {RecipeViewModalBackForward} from "./RecipeViewModalBackForward";
 
 
+/**
+ * Recipe Container is responsible for managing recipes.
+ * it use RecipeViewModalBackForward and internally support viewing next or previous recipe
+ */
 export class RecipeContainer extends React.Component {
     constructor(props) {
         super(props);
@@ -29,20 +33,22 @@ export class RecipeContainer extends React.Component {
                                                               onClick={this._onThumbnailClick}
                                                               index={index}/>;
 
-    _onNextRecipeClick(){
+    _onNextRecipeClick() {
         let nextIndex = this.state.modalRecipeIndex + 1;
         let recipe = this.props.recipes[nextIndex];
-        if (recipe){
+        if (recipe) {
             this.setState({modalRecipe: recipe, modalRecipeIndex: nextIndex});
         }
     }
-    _onPrevRecipeClick(){
-        let prevIndex = this.state.modalRecipeIndex -1;
+
+    _onPrevRecipeClick() {
+        let prevIndex = this.state.modalRecipeIndex - 1;
         let recipe = this.props.recipes[prevIndex];
-        if (recipe){
+        if (recipe) {
             this.setState({modalRecipe: recipe, modalRecipeIndex: prevIndex});
         }
     }
+    
     render() {
         let recipes = this.props.recipes;
         return (

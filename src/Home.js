@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './style/index.css';
 import "./style/recipe.css";
+import "./style/submit.css";
 import {Tab, Tabs, TabList, TabPanel} from "react-tabs";
 import {StyledBox} from "./component/CommonBox";
 import {Button} from "./component/Button";
@@ -56,6 +57,7 @@ export class AmzingChef extends Component {
                     <TabPanel>
                         <ContactUsTab/>
                     </TabPanel>
+
                 </Tabs>
                 <FooterSection/>
 
