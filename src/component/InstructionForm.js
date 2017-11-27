@@ -19,7 +19,7 @@ export default class InstructionForm extends React.Component {
                           placeholder={'instruction'}
                           rows={4}
                           cols={50}
-                          value={this.state.instruction || ''}
+                          value={this.props.instruction || ''}
                           onChange={e => this._onInstructionChange(e.target.value)}/>
                 <MdRemoveCircle size={22} style={{color: '#FACF8E'}}
                                 onClick={() => this.props.onRemove(this.props.index)}/>
