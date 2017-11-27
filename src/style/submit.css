@@ -1,13 +1,44 @@
-.ingredient-form input{
-    background-color: rgba(255, 255, 255, 0.5);
+.recipe-form input, select, textarea{
+    background: rgba(255, 255, 255, 0.5);
     border: 1px solid #FFFFFF;
+    border-radius: 4px;
     margin: 3px;
+    color: white;
+    font-size: 14px;
+    min-height: 20px;
+    padding: 4px;
 }
 
-.ingredient-form input:focus{
+.recipe-form input:focus, textarea:focus{
     background-color: rgba(255, 255, 255, 0);
 }
 
-.ingredient-form li{
+.recipe-form input:invalid{
+    background-color: #FF8181;
+    border: 1px solid white;
+}
+
+.recipe-form li{
     list-style-type: none;
 }
+
+.recipe-form ul{
+    padding: 0;
+}
+
+.baseinfo-form input{
+    width: 40%;
+}
+
+.instruction-form textarea{
+    width: 80%;
+}
+
+.ingredient-form .note{
+    width: 400px;
+}
+
+.ingredient-form option{
+    color: black;
+}
+

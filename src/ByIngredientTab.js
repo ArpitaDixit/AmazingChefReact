@@ -10,7 +10,6 @@ import {RecipeContainer} from "./RecipeContainer";
 import {Button} from "./component/Button";
 import {sendRequest} from "./service/BaseServices";
 import BaseContainer from "./BaseContainer";
-import Scrollbar from 'react-smooth-scrollbar';
 
 
 export class ByIngredientTab extends BaseContainer {

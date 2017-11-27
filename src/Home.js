@@ -57,7 +57,6 @@ export class AmzingChef extends Component {
                     <TabPanel>
                         <ContactUsTab/>
                     </TabPanel>
-
                 </Tabs>
                 <FooterSection/>
 
