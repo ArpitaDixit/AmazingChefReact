@@ -17,16 +17,12 @@ export class IngreButton extends React.Component {
         }
     }
 
-    _onClick(tag) {
-        if (tag === 'click' && !this.state.removed) {
-            if (this.props.onClick)
+    _onClick(e, tag) {
+        e.stopPropagation();
+        if (tag === 'click' && this.props.onClick)
                 this.props.onClick({index: this.props.index});
-        } else if (tag === 'remove') {
-            this.setState({removed: true}, () => {
-                if (this.props.onClose)
-                    this.props.onClose({index: this.props.index});
-            });
-        }
+        else if (tag === 'remove' && this.props.onClose)
+                this.props.onClose({index: this.props.index});
     }
 
     render() {
@@ -34,13 +30,13 @@ export class IngreButton extends React.Component {
 
         return (
             <div className={className}
-                 onClick={() => {
-                     this._onClick('click')
+                 onClick={(e) => {
+                     this._onClick(e, 'click')
                  }}>
                 <p>{this.props.title}</p>
                 <FaClose
                     className={'ingr-button-remove'}
-                    onClick={() => this._onClick('remove')}/>
+                    onClick={(e) => this._onClick(e, 'remove')}/>
 
             </div>
         )

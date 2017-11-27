@@ -1,8 +1,8 @@
 import React from "react";
 import MdRemoveCircle from "react-icons/lib/md/remove-circle";
-import {sortable} from "react-sortable";
-import {FlatList} from "./FlatList";
-import SortableItem from "react-sortable";
+// import {sortable} from "react-sortable";
+// import {FlatList} from "./FlatList";
+// import SortableItem from "react-sortable";
 
 export class BaseInfoForm extends React.Component {
 

@@ -9,6 +9,8 @@ import {Button} from "./component/Button";
 import {RecipeViewModal} from "./RecipeViewModal";
 import {sendRequest} from "./service/BaseServices";
 import {BaseInfoForm, IngredientFormCell, InstructionFormCell} from "./component/RecipeForm";
+import FaFileImageO from "react-icons/lib/fa/file-image-o";
+import Bookmark from 'react-bookmark';
 
 
 export class SubmitRecipeTab extends React.Component{
@@ -47,7 +49,7 @@ export class SubmitRecipeTab extends React.Component{
         let ingredients = recipe.ingredients;
         ingredients[index] = ingr;
         recipe.ingredients = ingredients;
-        this.setState({recipe: recipe});
+        this.setState({recipe});
         console.log(this.state.recipe);
     }
 
@@ -65,7 +67,7 @@ export class SubmitRecipeTab extends React.Component{
         let instruction = recipe.instruction;
         instruction[index] = text;
         recipe.instruction = instruction;
-        this.setState({recipe: recipe});
+        this.setState({recipe});
         console.log(this.state.recipe.instruction);
     }
 
@@ -83,7 +85,7 @@ export class SubmitRecipeTab extends React.Component{
         let ingr = {name: '', quantity: 0, metric: 'lb', note: ''};
         ingredients.push(ingr);
         recipe.ingredients = ingredients;
-        this.setState({recipe: recipe});
+        this.setState({recipe});
         console.log(this.state);
     };
 
@@ -93,7 +95,7 @@ export class SubmitRecipeTab extends React.Component{
         let ingredients = recipe.ingredients;
         ingredients.splice(index, 1);
         recipe.ingredients = ingredients;
-        this.setState({recipe: recipe});
+        this.setState({recipe});
         console.log(this.state);
 
     };
@@ -104,7 +106,7 @@ export class SubmitRecipeTab extends React.Component{
         let inst = '';
         instruction.push(inst);
         recipe.instruction = instruction;
-        this.setState({recipe: recipe});
+        this.setState({recipe});
 
     };
 
@@ -113,7 +115,7 @@ export class SubmitRecipeTab extends React.Component{
         let instruction = recipe.instruction;
         instruction.splice(index, 1);
         recipe.instruction = instruction;
-        this.setState({recipe: recipe});
+        this.setState({recipe});
     };
 
     _onBaseInfoChange({recipe_name, image, cruisine_type, meal_type, dietary, cook_time}) {
@@ -124,7 +126,7 @@ export class SubmitRecipeTab extends React.Component{
         recipe.meal_type = meal_type;
         recipe.dietary = dietary;
         recipe.cook_time = cook_time;
-        this.setState({recipe: recipe});
+        this.setState({recipe});
         console.log(recipe);
     }
 
@@ -148,7 +150,9 @@ export class SubmitRecipeTab extends React.Component{
                 <RecipeViewModal isOpen={this.state.showPreview}
                                  onRequestClose={() => this.setState({showPreview: false})}
                                  recipe={this.state.recipe}/>
-                <Button onClick={() => this.setState({showPreview: true})}>PREVIEW</Button>
+                <Button onClick={() => this.setState({showPreview: true})}>
+                    <FaFileImageO/>
+                </Button>
                 <div className={'recipe-form'}>
                     <h1> Recipe Form </h1>
                     <BaseInfoForm

@@ -10,7 +10,8 @@ import {RecipeContainer} from "./RecipeContainer";
 import {Button} from "./component/Button";
 import {sendRequest} from "./service/BaseServices";
 import BaseContainer from "./BaseContainer";
-
+import FaSearch from "react-icons/lib/fa/search";
+import MdClearAll from "react-icons/lib/md/clear-all";
 
 export class ByIngredientTab extends BaseContainer {
     constructor(props) {
@@ -105,8 +106,8 @@ export class ByIngredientTab extends BaseContainer {
         }
     };
 
-    _renderLoadMoreButton(){
-        if (this.state.showLoadMoreButton){
+    _renderLoadMoreButton() {
+        if (this.state.showLoadMoreButton) {
             return <Button onClick={() => this._search('load more')}>Load More</Button>
         }
     }
@@ -142,8 +143,12 @@ export class ByIngredientTab extends BaseContainer {
                             renderItem={this._renderButton}/>
                     </WhiteBox>
                     <div>
-                        <Button onClick={this._clearIngrBox.bind(this)}> CLEAR </Button>
-                        <Button onClick={() => this._search('new search')}> SEARCH </Button>
+                        <Button onClick={this._clearIngrBox.bind(this)}>
+                            <MdClearAll/>
+                        </Button>
+                        <Button onClick={() => this._search('new search')}>
+                            <FaSearch/>
+                        </Button>
                     </div>
                 </div>
 

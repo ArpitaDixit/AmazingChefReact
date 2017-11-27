@@ -12,7 +12,7 @@ import {ContactUsTab} from "./ContactUsTab";
 import {FooterSection} from "./FooterSection";
 import {LoginModal} from "./LoginModal";
 import Headroom from "react-headroom";
-
+import FaSignIn from "react-icons/lib/fa/sign-in";
 
 export class AmzingChef extends Component {
 
@@ -41,7 +41,9 @@ export class AmzingChef extends Component {
                                 <Tab className={'tabitem'}> <a>Submit Recipe</a> </Tab>
                                 <Tab className={'tabitem'}> <a>Contact Us</a> </Tab>
                             </TabList>
-                            <Button onClick={() => this.setState({login: true})}>Login</Button>
+                            <Button onClick={() => this.setState({login: true})}>
+                                <FaSignIn size={30}/>
+                            </Button>
                         </StyledBox>
                     </Headroom>
 

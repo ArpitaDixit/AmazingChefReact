@@ -6,6 +6,8 @@ import Modal from "react-modal";
 import {RecipeView} from "./component/RecipeView";
 import FaChevronLeft from "react-icons/lib/fa/chevron-left";
 import FaChevronRight from "react-icons/lib/fa/chevron-right";
+import MdLink from "react-icons/lib/md/link";
+import {Button} from "./component/Button";
 
 
 export class RecipeViewModalBackForward extends React.Component {
@@ -19,6 +21,9 @@ export class RecipeViewModalBackForward extends React.Component {
                 contentLabel={'RecipeView'}
                 className={'box box-hightlight main-background recipe-view-modal scrollbar'}
                 overlayClassName={'common-modal-overlay'}>
+                <Button onClick={() => window.open(`/recipes/${this.props.recipe._id}`)}>
+                    <MdLink/>
+                </Button>
                 <RecipeView
                     recipe={this.props.recipe}/>
                 <div className={'prev-next-icons'}>
