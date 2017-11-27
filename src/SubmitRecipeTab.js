@@ -3,14 +3,12 @@
  */
 import React from "react";
 import {StyledBox} from "./component/CommonBox";
-import IngredientForm from "./component/IngredientForm";
 import {FlatList} from "./component/FlatList";
 import MdAddCircle from "react-icons/lib/md/add-circle";
-import InstructionForm from "./component/InstructionForm";
 import {Button} from "./component/Button";
 import {RecipeViewModal} from "./RecipeViewModal";
-import BaseInfoForm from "./component/BaseInfoForm"
 import {sendRequest} from "./service/BaseServices";
+import {BaseInfoForm, IngredientFormCell, InstructionFormCell} from "./component/RecipeForm";
 
 
 export class SubmitRecipeTab extends React.Component{
@@ -55,7 +53,7 @@ export class SubmitRecipeTab extends React.Component{
 
 
     _renderIngredientFormCell = (item, index) => {
-        return <IngredientForm
+        return <IngredientFormCell
             onChange={this._onIngredientChange.bind(this)}
             index={index}
             ingredient={item}
@@ -72,7 +70,7 @@ export class SubmitRecipeTab extends React.Component{
     }
 
     _renderInstructionFormCell = (item, index) => {
-        return <InstructionForm
+        return <InstructionFormCell
             onChange={this._onInstructionChange.bind(this)}
             index={index}
             instruction={item}
@@ -180,6 +178,7 @@ export class SubmitRecipeTab extends React.Component{
                             size={22}
                             style={{color: '#FACF8E'}}/>
                     </div>
+                    {/*<SortableInstructionForm instruction={this.state.recipe.instruction}/>*/}
                 </div>
                 <Button onClick={() => this._submitRecipe()}>SUBMIT</Button>
             </StyledBox>
