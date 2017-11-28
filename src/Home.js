@@ -40,6 +40,7 @@ export class AmzingChef extends Component {
                                 <Tab className={'tabitem'}> <a>By Name</a> </Tab>
                                 <Tab className={'tabitem'}> <a>Submit Recipe</a> </Tab>
                                 <Tab className={'tabitem'}> <a>Contact Us</a> </Tab>
+                                <Tab className={'tabitem'}> <a>Sign Up</a> </Tab>
                                 <Tab className={'tabitem'}> <a>Login</a> </Tab>
                             </TabList>
                         </StyledBox>
