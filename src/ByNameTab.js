@@ -53,7 +53,6 @@ export class ByNameTab extends BaseContainer {
 
     render(){
 
-
         return (
             <StyledBox>
                 <div style={{display: 'flex'}}>
@@ -70,6 +69,7 @@ export class ByNameTab extends BaseContainer {
                     recipes={this.state.recipes}/>
             </StyledBox>
         )
+
     }
 
 }
