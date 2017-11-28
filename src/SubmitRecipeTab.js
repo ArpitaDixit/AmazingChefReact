@@ -10,8 +10,7 @@ import {RecipeViewModal} from "./RecipeViewModal";
 import {sendRequest} from "./service/BaseServices";
 import {BaseInfoForm, IngredientFormCell, InstructionFormCell} from "./component/RecipeForm";
 import FaFileImageO from "react-icons/lib/fa/file-image-o";
-import Bookmark from 'react-bookmark';
-
+import ReactTooltip from "react-tooltip";
 
 export class SubmitRecipeTab extends React.Component{
     constructor(props) {
@@ -151,7 +150,10 @@ export class SubmitRecipeTab extends React.Component{
                                  onRequestClose={() => this.setState({showPreview: false})}
                                  recipe={this.state.recipe}/>
                 <Button onClick={() => this.setState({showPreview: true})}>
-                    <FaFileImageO/>
+                    <FaFileImageO data-tip data-for='previewRecipe'/>
+                    <ReactTooltip id='previewRecipe'>
+                        <span>Preview real look of recipe</span>
+                    </ReactTooltip>
                 </Button>
                 <div className={'recipe-form'}>
                     <h1> Recipe Form </h1>

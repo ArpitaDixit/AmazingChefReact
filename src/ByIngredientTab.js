@@ -12,6 +12,8 @@ import {sendRequest} from "./service/BaseServices";
 import BaseContainer from "./BaseContainer";
 import FaSearch from "react-icons/lib/fa/search";
 import MdClearAll from "react-icons/lib/md/clear-all";
+import MdExpandMore from "react-icons/lib/md/expand-more";
+import ReactTooltip from "react-tooltip";
 
 export class ByIngredientTab extends BaseContainer {
     constructor(props) {
@@ -108,7 +110,11 @@ export class ByIngredientTab extends BaseContainer {
 
     _renderLoadMoreButton() {
         if (this.state.showLoadMoreButton) {
-            return <Button onClick={() => this._search('load more')}>Load More</Button>
+            return (
+                <Button onClick={() => this._search('load more')}>
+                    <MdExpandMore data-tip data-for={'loadmoreBut'}/>
+                    <ReactTooltip id={'loadmoreBut'}>load more recipes</ReactTooltip>
+                </Button>)
         }
     }
 
@@ -144,11 +150,19 @@ export class ByIngredientTab extends BaseContainer {
                     </WhiteBox>
                     <div>
                         <Button onClick={this._clearIngrBox.bind(this)}>
-                            <MdClearAll/>
+                            <MdClearAll data-tip data-for='clearIngr'/>
+                            <ReactTooltip id='clearIngr'>
+                                <span>clear all ingredients in the box</span>
+                            </ReactTooltip>
                         </Button>
+
                         <Button onClick={() => this._search('new search')}>
-                            <FaSearch/>
+                            <FaSearch data-tip data-for='searchByIngr'/>
+                            <ReactTooltip id='searchByIngr'>
+                                <span>search by ingredient</span>
+                            </ReactTooltip>
                         </Button>
+
                     </div>
                 </div>
 

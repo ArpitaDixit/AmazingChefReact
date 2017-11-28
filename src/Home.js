@@ -13,6 +13,8 @@ import {FooterSection} from "./FooterSection";
 import {LoginModal} from "./LoginModal";
 import Headroom from "react-headroom";
 import FaSignIn from "react-icons/lib/fa/sign-in";
+import ReactTooltip from "react-tooltip";
+
 
 export class AmzingChef extends Component {
 
@@ -42,7 +44,10 @@ export class AmzingChef extends Component {
                                 <Tab className={'tabitem'}> <a>Contact Us</a> </Tab>
                             </TabList>
                             <Button onClick={() => this.setState({login: true})}>
-                                <FaSignIn size={30}/>
+                                <FaSignIn size={30} data-tip data-for={'loginBut'}/>
+                                <ReactTooltip id={'loginBut'}>
+                                    <span>Login</span>
+                                </ReactTooltip>
                             </Button>
                         </StyledBox>
                     </Headroom>
