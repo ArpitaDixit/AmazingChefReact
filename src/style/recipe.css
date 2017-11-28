@@ -94,6 +94,7 @@
 
 .scrollbar{
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .scrollbar::-webkit-scrollbar{

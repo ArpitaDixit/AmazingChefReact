@@ -1,8 +1,5 @@
 import React from "react";
 import MdRemoveCircle from "react-icons/lib/md/remove-circle";
-// import {sortable} from "react-sortable";
-// import {FlatList} from "./FlatList";
-// import SortableItem from "react-sortable";
 
 export class BaseInfoForm extends React.Component {
 
@@ -56,7 +53,7 @@ export class BaseInfoForm extends React.Component {
     render() {
         let baseInfo = this.props.baseInfo;
         return (
-            <div className={'baseinfo-form'}>
+            <div className={'baseinfo-form form'}>
 
                 <input type='text'
                        required

@@ -155,7 +155,7 @@ export class SubmitRecipeTab extends React.Component{
                         <span>Preview real look of recipe</span>
                     </ReactTooltip>
                 </Button>
-                <div className={'recipe-form'}>
+                <div className={'form'}>
                     <h1> Recipe Form </h1>
                     <BaseInfoForm
                         onChange={this._onBaseInfoChange.bind(this)}
@@ -164,7 +164,7 @@ export class SubmitRecipeTab extends React.Component{
                             image: image, cook_time: cook_time, dietary: dietary, cruisine_type: cruisine_type,
                             meal_type: meal_type
                         }}/>
-                    <div className={'ingredient-form'}>
+                    <div className={'form'}>
                         <h1>Ingredients</h1>
                         <FlatList
                             data={this.state.recipe.ingredients}
@@ -174,7 +174,7 @@ export class SubmitRecipeTab extends React.Component{
                             size={22}
                             style={{color: '#FACF8E'}}/>
                     </div>
-                    <div className={'instruction-form'}>
+                    <div className={'form'}>
                         <h1>Instructions</h1>
                         <FlatList
                             data={this.state.recipe.instruction}
@@ -184,7 +184,6 @@ export class SubmitRecipeTab extends React.Component{
                             size={22}
                             style={{color: '#FACF8E'}}/>
                     </div>
-                    {/*<SortableInstructionForm instruction={this.state.recipe.instruction}/>*/}
                 </div>
                 <Button onClick={() => this._submitRecipe()}>SUBMIT</Button>
             </StyledBox>
