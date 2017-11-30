@@ -1,24 +1,69 @@
 import React from "react";
 import MdRemoveCircle from "react-icons/lib/md/remove-circle";
+import FaExclamationTriangle from "react-icons/lib/fa/exclamation-triangle";
+import FaCheckCircle from "react-icons/lib/fa/check-circle"
+
+
+export class InputError extends React.Component {
+    _renderErrIcon = () => {
+        if (this.props.error)
+            return <FaExclamationTriangle size={15}/>
+        else
+            return <FaCheckCircle size={15} color={'green'}/>;
+    };
+
+    render() {
+
+        return (
+            <div className={'input-error'}>
+                {this._renderErrIcon()}
+                {this.props.error || ''}
+            </div>
+        )
+    }
+}
 
 export class BaseInfoForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            nameErr: 'name cannot be empty',
+            imageURLErr: 'image url cannot be empty',
+            cookTimeErr: 'name cannot be empty',
+            dietaryErr: 'name cannot be empty',
+            mealTypeErr: 'name cannot be empty',
+            cruisineTypeErr: 'name cannot be empty',
+        }
+    }
 
     _onNameChange(name) {
         let baseInfo = this.props.baseInfo;
         baseInfo.recipe_name = name;
         this._onChange(baseInfo);
+        let err = '';
+        if (!name)
+            err = 'name cannot be empty';
+        this.setState({nameErr: err})
     }
 
     _onImageURLChange(url) {
         let baseInfo = this.props.baseInfo;
         baseInfo.image.source = url;
         this._onChange(baseInfo);
+        let err = '';
+        if (!url)
+            err = 'image url cannot be empty';
+        this.setState({imageURLErr: err})
     }
 
     _onCookTimeChange(minutes) {
         let baseInfo = this.props.baseInfo;
         baseInfo.cook_time = minutes;
         this._onChange(baseInfo);
+        let err = '';
+        if (!minutes)
+            err = 'cook time cannot be empty';
+        this.setState({cookTimeErr: err})
     }
 
     _onDietaryChange(text) {
@@ -27,6 +72,10 @@ export class BaseInfoForm extends React.Component {
         let baseInfo = this.props.baseInfo;
         baseInfo.dietary = dietary;
         this._onChange(baseInfo);
+        let err = '';
+        if (!text)
+            err = 'dietary cannot be empty';
+        this.setState({dietaryErr: err})
     }
 
     _onMealTypeChange(text) {
@@ -35,6 +84,10 @@ export class BaseInfoForm extends React.Component {
         let baseInfo = this.props.baseInfo;
         baseInfo.meal_type = meal;
         this._onChange(baseInfo);
+        let err = '';
+        if (!text)
+            err = 'meal type cannot be empty';
+        this.setState({mealTypeErr: err})
     }
 
     _onCruisineTypeChange(text) {
@@ -43,6 +96,10 @@ export class BaseInfoForm extends React.Component {
         let baseInfo = this.props.baseInfo;
         baseInfo.cruisine_type = type;
         this._onChange(baseInfo);
+        let err = '';
+        if (!text)
+            err = 'cruisine type cannot be empty';
+        this.setState({cruisineTypeErr: err})
     }
 
     _onChange(baseInfo) {
@@ -54,49 +111,69 @@ export class BaseInfoForm extends React.Component {
         let baseInfo = this.props.baseInfo;
         return (
             <div className={'baseinfo-form form'}>
-
-                <input type='text'
-                       required
-                       placeholder={'recipe name'}
-                       value={baseInfo.recipe_name || ''}
-                       onChange={e => this._onNameChange(e.target.value)}/>
-                <br/>
-                <input type='text'
-                       required
-                       placeholder={'image url'}
-                       value={baseInfo.image.source || ''}
-                       onChange={e => this._onImageURLChange(e.target.value)}/>
-                <br/>
-                <input type='number'
-                       required
-                       placeholder={'cook time in minutes'}
-                       value={baseInfo.cook_time || ''}
-                       onChange={e => this._onCookTimeChange(e.target.value)}/>
-                <br/>
-                <input type='text'
-                       required
-                       placeholder={'dietary (separated by comma)'}
-                       value={baseInfo.dietary || ''}
-                       onChange={e => this._onDietaryChange(e.target.value)}/>
-                <br/>
-                <input type='text'
-                       required
-                       placeholder={'meal type (separated by comma)'}
-                       value={baseInfo.meal_type || ''}
-                       onChange={e => this._onMealTypeChange(e.target.value)}/>
-                <br/>
-                <input type='text'
-                       required
-                       placeholder={'cruisine type (separated by comma)'}
-                       value={baseInfo.cruisine_type || ''}
-                       onChange={e => this._onCruisineTypeChange(e.target.value)}/>
-
+                <div className={'display-flex'}>
+                    <input type='text'
+                           required
+                           placeholder={'recipe name'}
+                           value={baseInfo.recipe_name || ''}
+                           onChange={e => this._onNameChange(e.target.value)}/>
+                    <InputError error={this.state.nameErr}/>
+                </div>
+                <div className={'display-flex'}>
+                    <input type='text'
+                           required
+                           placeholder={'image url'}
+                           value={baseInfo.image.source || ''}
+                           onChange={e => this._onImageURLChange(e.target.value)}/>
+                    <InputError error={this.state.imageURLErr}/>
+                </div>
+                <div className={'display-flex'}>
+                    <input type='number'
+                           required
+                           placeholder={'cook time in minutes'}
+                           value={baseInfo.cook_time || ''}
+                           onChange={e => this._onCookTimeChange(e.target.value)}/>
+                    <InputError error={this.state.cookTimeErr}/>
+                </div>
+                <div className={'display-flex'}>
+                    <input type='text'
+                           required
+                           placeholder={'dietary (separated by comma)'}
+                           value={baseInfo.dietary || ''}
+                           onChange={e => this._onDietaryChange(e.target.value)}/>
+                    <InputError error={this.state.dietaryErr}/>
+                </div>
+                <div className={'display-flex'}>
+                    <input type='text'
+                           required
+                           placeholder={'meal type (separated by comma)'}
+                           value={baseInfo.meal_type || ''}
+                           onChange={e => this._onMealTypeChange(e.target.value)}/>
+                    <InputError error={this.state.mealTypeErr}/>
+                </div>
+                <div className={'display-flex'}>
+                    <input type='text'
+                           required
+                           placeholder={'cruisine type (separated by comma)'}
+                           value={baseInfo.cruisine_type || ''}
+                           onChange={e => this._onCruisineTypeChange(e.target.value)}/>
+                    <InputError error={this.state.cruisineTypeErr}/>
+                </div>
             </div>
         )
     }
 }
 
 export class IngredientFormCell extends React.Component {
+    constructor(props){
+        super(props);
+        this.state={
+            err: 'ingredient cannot be empty',
+            nameErr: 'ingredient cannot be empty',
+            quantityErr: 'quantity cannot be empty',
+        }
+    }
+
 
     _onNameChange(name) {
         let ingredient = this.props.ingredient;

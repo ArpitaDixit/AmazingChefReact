@@ -19,8 +19,8 @@ export class ByIngredientTab extends BaseContainer {
     constructor(props) {
         super(props);
         this.state = {
-            ingrSelected: [{name: 'salt', selected: true}],
-            ingrSelectedSet: new Set(['salt']),
+            ingrSelected: [],
+            ingrSelectedSet: new Set([]),
             recipes: [],
             skip: 0,
             limit: 1,
@@ -99,13 +99,13 @@ export class ByIngredientTab extends BaseContainer {
         if (tag === 'load more')
             skip += this.state.skip + limit;
 
-        if (ingr.included.length) {
-            let url = `/search?ingredients=${JSON.stringify(ingr.included)}`;
-            url += `&excluded=${JSON.stringify(ingr.excluded)}`;
-            url += `&skip=${skip}`;
-            url += `&limit=${limit}`;
-            sendRequest('get', url, null, null, this, tag);
-        }
+        // if (ingr.included.length) {
+        let url = `/search?ingredients=${JSON.stringify(ingr.included)}`;
+        url += `&excluded=${JSON.stringify(ingr.excluded)}`;
+        url += `&skip=${skip}`;
+        url += `&limit=${limit}`;
+        sendRequest('get', url, null, null, this, tag);
+        // }
     };
 
     _renderLoadMoreButton() {
@@ -116,6 +116,11 @@ export class ByIngredientTab extends BaseContainer {
                     <ReactTooltip id={'loadmoreBut'}>load more recipes</ReactTooltip>
                 </Button>)
         }
+    }
+
+    componentDidMount(){
+        super.componentDidMount();
+        this._search('new search');
     }
 
     onSuccess(res, tag) {
@@ -142,7 +147,7 @@ export class ByIngredientTab extends BaseContainer {
                 <div style={{display: 'flex'}}>
                     <IngredientSearchSuggestion
                         onSuggestionSelected={this._onSuggestionSelected}/>
-                    <WhiteBox id={'ingr-container'} className={'ingr-container'}>
+                    <WhiteBox id={'ingr-container'} className={'ingr-container scrollbar'}>
                         <FlatList
                             data={this.state.ingrSelected}
                             keyExtractor={item => item.name}

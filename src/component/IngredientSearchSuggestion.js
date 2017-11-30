@@ -120,7 +120,7 @@ export class IngredientSearchSuggestion extends BaseContainer {
                     input: 'white-box no-border white-trans-background shadow ingr-search-input',
                     container: 'ingr-search-container',
                     suggestionsContainerOpen:
-                        'white-box no-border white-trans-background shadow ingr-search-box ingr-suggestion-container-open',
+                        'white-box no-border white-trans-background shadow ingr-search-box ingr-suggestion-container-open scrollbar',
                     suggestion: 'ingr-suggestion',
                     suggestionHighlighted: 'ingr-suggestion-highlight',
                     suggestionsList: 'ingr-suggestion-list'

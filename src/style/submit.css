@@ -41,3 +41,9 @@
 .form option{
     color: black;
 }
+
+.input-error{
+    color: #FF8181;
+    font-size: 15px;
+    margin: auto 10px;
+}
