@@ -1,5 +1,5 @@
 import React from "react";
-import {StyledBox, WhiteBox} from "./component/CommonBox";
+import {StyledBox} from "./component/CommonBox";
 
 
 export class ContactUsTab extends React.Component {

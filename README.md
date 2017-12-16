@@ -6,6 +6,7 @@ This will work in conjunction with backend server AmazingChef Repository.
 
 ## Software dependecy:
 1. Language: ECMAScript 6 (javascript)
+2. NodeJS
 
 ## Database dependency:
 Before the front-end sever is run, in addition to satisfy software requirements, 
