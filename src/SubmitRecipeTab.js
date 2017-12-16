@@ -12,7 +12,7 @@ import {BaseInfoForm, IngredientFormCell, InstructionFormCell} from "./component
 import FaFileImageO from "react-icons/lib/fa/file-image-o";
 import ReactTooltip from "react-tooltip";
 
-export class SubmitRecipeTab extends React.Component{
+export class SubmitRecipeTab extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -54,11 +54,13 @@ export class SubmitRecipeTab extends React.Component{
 
 
     _renderIngredientFormCell = (item, index) => {
-        return <IngredientFormCell
-            onChange={this._onIngredientChange.bind(this)}
-            index={index}
-            ingredient={item}
-            onRemove={this._remIngr}/>
+        return (
+            <IngredientFormCell
+                onChange={this._onIngredientChange.bind(this)}
+                index={index}
+                ingredient={item}
+                onRemove={this._remIngr}/>
+        )
     };
 
     _onInstructionChange(text, index) {
@@ -71,11 +73,13 @@ export class SubmitRecipeTab extends React.Component{
     }
 
     _renderInstructionFormCell = (item, index) => {
-        return <InstructionFormCell
-            onChange={this._onInstructionChange.bind(this)}
-            index={index}
-            instruction={item}
-            onRemove={this._remInst}/>
+        return (
+            <InstructionFormCell
+                onChange={this._onInstructionChange.bind(this)}
+                index={index}
+                instruction={item}
+                onRemove={this._remInst}/>
+        )
     };
 
     _addIngr = () => {

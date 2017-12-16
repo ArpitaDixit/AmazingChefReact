@@ -7,8 +7,9 @@ import React from "react";
  * Utility to render a Flat List given a data array.
  *
  * @props data: data array to be render
- * @props keyExtractor: a function take in an array element and return unique key for each element
- *                if element already have unique key field, this props is not necessary
+ * @props keyExtractor: a function take in an array element and index.
+ *                      the function should return unique key for each element
+ *                      if element already have unique key field, this props is not necessary
  * @props renderItem: function take in two parameters item and index to render each element
  */
 export class FlatList extends React.Component {

@@ -48,7 +48,7 @@ export class RecipeContainer extends React.Component {
             this.setState({modalRecipe: recipe, modalRecipeIndex: prevIndex});
         }
     }
-    
+
     render() {
         let recipes = this.props.recipes;
         return (
@@ -57,7 +57,10 @@ export class RecipeContainer extends React.Component {
                 <FlatList
                     data={recipes}
                     keyExtractor={item => item._id}
-                    renderItem={this._renderRecipeThumbnail}/>
+                    renderItem={(item, index) =>
+                        <RecipeThumnail recipe={item}
+                                        onClick={this._onThumbnailClick}
+                                        index={index}/>}/>
                 <RecipeViewModalBackForward
                     isOpen={this.state.showModal}
                     onRequestClose={() => this.setState({showModal: false})}

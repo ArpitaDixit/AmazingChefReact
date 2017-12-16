@@ -38,6 +38,7 @@ export class RecipeViewModalBackForward extends React.Component {
 
                 <RecipeView
                     recipe={this.props.recipe}/>
+
                 <div className={'prev-next-icons'}>
                     <FaChevronLeft
                         size={50}
